@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true" class="level-content">
+  <div class="top-spacer"></div>
+
+  <div class="level-container">
+    <div class="outer-circle">
+      <div class="inner-circle">
+        <!-- Target lines -->
+        <div class="target-line horizontal"></div>
+        <div class="target-line vertical"></div>
+        
+        <!-- Bubble -->
+        <div class="bubble" [style.left.%]="bubbleX" [style.top.%]="bubbleY" [class]="bubbleStatus">
+          <div class="bubble-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-container">
+    <div class="main-degree">
+      {{ degree }}°
+    </div>
+    <div class="axis-values">
+      <div class="axis">
+        <span class="label">X</span>
+        <span class="value">{{ displayX }}°</span>
+      </div>
+      <div class="axis">
+        <span class="label">Y</span>
+        <span class="value">{{ displayY }}°</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <ion-button fill="clear" (click)="calibrate()" class="calibrate-btn">
+      <ion-icon slot="start" name="sync-outline"></ion-icon>
+      Kalibrasi
+    </ion-button>
+    <ion-button fill="clear" (click)="resetCalibration()" class="reset-btn">
+      Reset
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "Penyeimbang-Ku",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
