@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { Motion } from '@capacitor/motion';
+import { Platform, AlertController } from '@ionic/angular';
+import { App } from '@capacitor/app';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -30,11 +33,48 @@ export class HomePage implements OnInit, OnDestroy {
 
   listener: any;
   isVertical = false;
+  private backButtonSubscription?: Subscription;
 
-  constructor(private ngZone: NgZone) { }
+  constructor(
+    private ngZone: NgZone,
+    private platform: Platform,
+    private alertController: AlertController
+  ) { }
 
   async ngOnInit() {
     this.startSensors();
+    this.setupBackButton();
+  }
+
+  setupBackButton() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(10, async () => {
+      await this.showExitConfirmation();
+    });
+  }
+
+  async showExitConfirmation() {
+    const alert = await this.alertController.create({
+      header: 'Keluar Aplikasi',
+      message: 'Apakah Anda yakin ingin keluar dari Penyeimbang-Ku?',
+      cssClass: 'custom-exit-alert',
+      buttons: [
+        {
+          text: 'Batal',
+          role: 'cancel',
+          cssClass: 'alert-button-cancel'
+        },
+        {
+          text: 'Keluar',
+          role: 'confirm',
+          cssClass: 'alert-button-confirm',
+          handler: () => {
+            App.exitApp();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async startSensors() {
@@ -120,6 +160,9 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.listener) {
       this.listener.remove();
+    }
+    if (this.backButtonSubscription) {
+      this.backButtonSubscription.unsubscribe();
     }
   }
 }

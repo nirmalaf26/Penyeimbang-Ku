@@ -35,3 +35,42 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Premium Custom Exit Alert Styling */
+.custom-exit-alert {
+  --background: var(--ion-background-color, #ffffff);
+  
+  .alert-wrapper {
+    border-radius: 16px;
+    border: 1px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .alert-head {
+    padding-bottom: 8px;
+    .alert-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ion-color-primary, #3880ff);
+    }
+  }
+
+  .alert-message {
+    font-size: 0.95rem;
+    color: var(--ion-color-step-600, #666666);
+    line-height: 1.45;
+  }
+
+  .alert-button {
+    font-weight: 600;
+    text-transform: capitalize;
+    
+    &.alert-button-cancel {
+      color: var(--ion-color-medium, #92949c);
+    }
+    
+    &.alert-button-confirm {
+      color: var(--ion-color-danger, #eb445a);
+    }
+  }
+}

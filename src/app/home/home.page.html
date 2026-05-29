@@ -7,7 +7,7 @@
         <!-- Target lines -->
         <div class="target-line horizontal"></div>
         <div class="target-line vertical"></div>
-        
+
         <!-- Bubble -->
         <div class="bubble" [style.left.%]="bubbleX" [style.top.%]="bubbleY" [class]="bubbleStatus">
           <div class="bubble-glow"></div>
@@ -36,9 +36,6 @@
     <ion-button fill="clear" (click)="calibrate()" class="calibrate-btn">
       <ion-icon slot="start" name="sync-outline"></ion-icon>
       Kalibrasi
-    </ion-button>
-    <ion-button fill="clear" (click)="resetCalibration()" class="reset-btn">
-      Reset
     </ion-button>
   </div>
 </ion-content>
